@@ -1,25 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.css"
 
-function sum(a, b) {
-  return a + b;
-}
+class App extends Component {
+  constructor(props) {
+    super(props)
 
-function primeiroJSN() {
-  return (
-    <div className="test"> Luciano Pereira - Introdução ao ReactJS
-      <h1>Soma: {sum(20, 13)}</h1>
-    </div>
-  )
-}
+    this.state = {
+      soma: 0
+    }
+  }
 
-const App = () => {
-  return (
-    <div className='App'>
-      {primeiroJSN()}
+  calcular = () => {
+    let a = parseInt(document.querySelector(".input1").value)
+    let b = parseInt( document.querySelector(".input2").value)
+
+    this.setState(
+      {
+        soma: a + b
+      } 
+    )
+  }
+
+  render () {
+    const {soma} = this.state
+
+    return(
+      <div>
+      <h1>Soma de dois valores {soma}</h1>
+      <input className={"input1"} type="number"></input>
+      <input className={"input2"} type="number"></input>
+      <button onClick={() => this.calcular()}>Calcular</button>
     </div>
-  )
+    )
+  }
 }
 
 const rootElement = document.getElementById("root")
